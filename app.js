@@ -5,14 +5,9 @@ let databasePendaftaran = [
 ];
 
 document.getElementById('formPendaftaran').addEventListener('submit', function(e) {
-    e.preventDefault();
-
     // Ambil nilai dari kolom input form
     const txtNo = document.getElementById('inputNo').value.trim();
     const numAngka = parseInt(document.getElementById('inputAngka').value);
-    const txtHp = document.getElementById('inputHp').value;
-    const txtAlamat = document.getElementById('inputAlamat').value;
-    const txtKet = document.getElementById('inputKet').value;
 
     const notifBox = document.getElementById('notifikasiArea');
     notifBox.innerHTML = ""; // Bersihkan pesan error sebelumnya
@@ -22,15 +17,17 @@ document.getElementById('formPendaftaran').addEventListener('submit', function(e
     const cekDuplikatTotal = databasePendaftaran.find(data => data.no === txtNo && data.angka === numAngka);
 
     if (cekDuplikatTotal) {
+        e.preventDefault(); // Kunci pengisian, gagalkan kirim ke email
         notifBox.className = "notif error";
         notifBox.innerHTML = `<strong>Pendaftaran Gagal!</strong> Kombinasi No (<strong>${txtNo}</strong>) dan Angka (<strong>${numAngka}</strong>) sudah terdaftar. Data ini terkunci dan tidak bisa diisi kembali.`;
-        return; // Hentikan proses simpan data baru
+        return; 
     }
 
     // KONDISI 2: Cek apakah salah satu ('No' ATAU 'Angka') ada yang sama dengan data lama
     const cekKesamaanParsial = databasePendaftaran.filter(data => data.no === txtNo || data.angka === numAngka);
 
     if (cekKesamaanParsial.length > 0) {
+        e.preventDefault(); // Kunci pengisian, gagalkan kirim ke email
         notifBox.className = "notif warning";
         let htmlKonten = `<strong>Pendaftaran Ditolak!</strong> Ditemukan kemiripan data pada sistem kami:<ul>`;
         
@@ -43,17 +40,11 @@ document.getElementById('formPendaftaran').addEventListener('submit', function(e
         
         htmlKonten += `</ul>`;
         notifBox.innerHTML = htmlKonten;
-        return; // Hentikan proses simpan data baru
+        return; 
     }
 
-    // KONDISI 3: Jika lolos semua pengecekan, simpan data baru ke memori
-    const idBaru = databasePendaftaran.length + 1;
-    databasePendaftaran.push({
-        id: idBaru, no: txtNo, angka: numAngka, hp: txtHp, alamat: txtAlamat, ket: txtKet
-    });
-
-    alert("Selamat! Pendaftaran Anda berhasil disimpan.");
-    document.getElementById('formPendaftaran').reset();
+    // KONDISI 3: Jika lolos semua validasi, biarkan form terkirim (Jangan gunakan e.preventDefault())
+    alert("Data valid! Menghubungkan ke server email, harap tunggu sebentar...");
 });
 
 // Fungsi untuk memunculkan detail data pendaftar lama melalui pop-up alert

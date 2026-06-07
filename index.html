@@ -12,3 +12,46 @@
         
         <!-- PENTING: Ganti tulisan EMAIL_ANDA@GMAIL.COM dengan email aktif milik Anda -->
         <form id="formPendaftaran" action="
+" method="POST">
+            
+            <!-- Pengaturan FormSubmit agar tidak redirect ke website luar setelah sukses -->
+            <input type="hidden" name="_next" value="https://github.io">
+            <!-- Pengaturan FormSubmit untuk mengaktifkan balasan otomatis ke pendaftar -->
+            <input type="hidden" name="_autoresponse" value="Terima kasih! Pendaftaran Anda dengan No/Kode tersebut telah kami terima dan sukses diproses oleh sistem.">
+            
+            <div class="form-group">
+                <label>No / Kode:</label>
+                <!-- Tambahkan atribut name="..." di setiap input agar datanya masuk ke email -->
+                <input type="text" id="inputNo" name="No_Kode" required placeholder="Contoh: A01">
+            </div>
+            <div class="form-group">
+                <label>Angka:</label>
+                <input type="number" id="inputAngka" name="Angka" required placeholder="Contoh: 100">
+            </div>
+            <div class="form-group">
+                <label>Email Pendaftar (Untuk Balasan):</label>
+                <!-- INPUT BARU: Wajib menggunakan id="email" dan name="email" agar autoresponder FormSubmit bekerja -->
+                <input type="email" id="inputEmail" name="email" required placeholder="nama@email.com">
+            </div>
+            <div class="form-group">
+                <label>No. HP:</label>
+                <input type="text" id="inputHp" name="No_HP" required placeholder="08xxxxxx">
+            </div>
+            <div class="form-group">
+                <label>Alamat:</label>
+                <textarea id="inputAlamat" name="Alamat" required placeholder="Masukkan alamat lengkap"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Keterangan:</label>
+                <textarea id="inputKet" name="Keterangan" placeholder="Keterangan tambahan (opsional)"></textarea>
+            </div>
+            <button type="submit">Daftar Sekarang</button>
+        </form>
+
+        <!-- Area untuk menampilkan notifikasi validasi duplikat -->
+        <div id="notifikasiArea" class="hidden"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -2,56 +2,31 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Pendaftaran Validasi</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Kirim File Langsung ke Email</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 50px; }
+        .box { max-width: 400px; background: white; padding: 30px; margin: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; }
+        label { font-weight: bold; color: #555; }
+        input[type="email"], input[type="file"] { width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #218838; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Form Pendaftaran</h2>
-        
-        <!-- PENTING: Ganti tulisan EMAIL_ANDA@GMAIL.COM dengan email aktif milik Anda -->
-        <form id="formPendaftaran" action="
-" method="POST">
-            
-            <!-- Pengaturan FormSubmit agar tidak redirect ke website luar setelah sukses -->
-            <input type="hidden" name="_next" value="https://github.io">
-            <!-- Pengaturan FormSubmit untuk mengaktifkan balasan otomatis ke pendaftar -->
-            <input type="hidden" name="_autoresponse" value="Terima kasih! Pendaftaran Anda dengan No/Kode tersebut telah kami terima dan sukses diproses oleh sistem.">
-            
-            <div class="form-group">
-                <label>No / Kode:</label>
-                <!-- Tambahkan atribut name="..." di setiap input agar datanya masuk ke email -->
-                <input type="text" id="inputNo" name="No_Kode" required placeholder="Contoh: A01">
-            </div>
-            <div class="form-group">
-                <label>Angka:</label>
-                <input type="number" id="inputAngka" name="Angka" required placeholder="Contoh: 100">
-            </div>
-            <div class="form-group">
-                <label>Email Pendaftar (Untuk Balasan):</label>
-                <!-- INPUT BARU: Wajib menggunakan id="email" dan name="email" agar autoresponder FormSubmit bekerja -->
-                <input type="email" id="inputEmail" name="email" required placeholder="nama@email.com">
-            </div>
-            <div class="form-group">
-                <label>No. HP:</label>
-                <input type="text" id="inputHp" name="No_HP" required placeholder="08xxxxxx">
-            </div>
-            <div class="form-group">
-                <label>Alamat:</label>
-                <textarea id="inputAlamat" name="Alamat" required placeholder="Masukkan alamat lengkap"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Keterangan:</label>
-                <textarea id="inputKet" name="Keterangan" placeholder="Keterangan tambahan (opsional)"></textarea>
-            </div>
-            <button type="submit">Daftar Sekarang</button>
-        </form>
 
-        <!-- Area untuk menampilkan notifikasi validasi duplikat -->
-        <div id="notifikasiArea" class="hidden"></div>
-    </div>
+<div class="box">
+    <h2>Form Kirim File</h2>
+    <form action="kirim-langsung.php" method="POST" enctype="multipart/form-data">
+        <label>Email Tujuan:</label>
+        <input type="email" name="email_tujuan" placeholder="contoh@email.com" required>
 
-    <script src="app.js"></script>
+        <label>Pilih File:</label>
+        <input type="file" name="file_upload" required>
+
+        <button type="submit" name="submit">Kirim ke Email</button>
+    </form>
+</div>
+
 </body>
 </html>

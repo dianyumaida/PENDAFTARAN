@@ -1,3 +1,19 @@
+<!-- Membuat menu dropdown pilihan tujuan email -->
+<label>Pilih Tujuan Pengiriman Email:</label>
+<select name="access_key" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
+    <option value="">-- Pilih Tujuan --</option>
+    <!-- Ganti value dengan kode token masing-masing email -->
+    <option value="KODE_ACCESS_KEY_EMAIL_PERTAMA">Kirim ke Admin (Email 1)</option>
+    <option value="KODE_ACCESS_KEY_EMAIL_KEDUA">Kirim ke Manajer (Email 2)</option>
+</select>
+
+<!-- Input untuk mencatat siapa nama pengirimnya -->
+<label>Nama Pengirim:</label>
+<input type="text" name="name" placeholder="Nama Anda" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
+
+<!-- Input Lampiran File -->
+<label>Pilih File:</label>
+<input type="file" name="attachment" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,7 +34,23 @@
 <div class="box">
     <h2>Form Kirim File</h2>
     <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-    
+    <!-- Membuat menu dropdown pilihan tujuan email -->
+<label>Pilih Tujuan Pengiriman Email:</label>
+<select name="access_key" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
+    <option value="">-- Pilih Tujuan --</option>
+    <!-- Ganti value dengan kode token masing-masing email -->
+    <option value="KODE_ACCESS_KEY_EMAIL_PERTAMA">Kirim ke Admin (Email 1)</option>
+    <option value="KODE_ACCESS_KEY_EMAIL_KEDUA">Kirim ke Manajer (Email 2)</option>
+</select>
+
+<!-- Input untuk mencatat siapa nama pengirimnya -->
+<label>Nama Pengirim:</label>
+<input type="text" name="name" placeholder="Nama Anda" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
+
+<!-- Input Lampiran File -->
+<label>Pilih File:</label>
+<input type="file" name="attachment" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
+
     <!-- Paste Kode Access Key Anda di bawah ini -->
     <input type="hidden" name="access_key" value="b5f35c7f-28d7-40b3-ba17-f6ca2d449a39">
 

@@ -17,15 +17,22 @@
 
 <div class="box">
     <h2>Form Kirim File</h2>
-    <form action="kirim-langsung.php" method="POST" enctype="multipart/form-data">
-        <label>Email Tujuan:</label>
-        <input type="email" name="email_tujuan" placeholder="contoh@email.com" required>
+    <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+    
+    <!-- Paste Kode Access Key Anda di bawah ini -->
+    <input type="hidden" name="access_key" value="b5f35c7f-28d7-40b3-ba17-f6ca2d449a39">
 
-        <label>Pilih File:</label>
-        <input type="file" name="file_upload" required>
+    <!-- Input Email Pengunjung (Wajib menggunakan name="email") -->
+    <label>Email Anda (Pengirim):</label>
+    <input type="email" name="email" placeholder="nama_kamu@email.com" required>
 
-        <button type="submit" name="submit">Kirim ke Email</button>
-    </form>
+    <!-- Input Lampiran File (Wajib menggunakan name="attachment") -->
+    <label>Pilih File:</label>
+    <input type="file" name="attachment" required>
+
+    <button type="submit" name="submit">Kirim ke Email</button>
+</form>
+
 </div>
 
 </body>

@@ -1,31 +1,16 @@
-<!-- Membuat menu dropdown pilihan tujuan email -->
-<label>Pilih Tujuan Pengiriman Email:</label>
-<select name="access_key" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
-    <option value="">-- Pilih Tujuan --</option>
-    <!-- Ganti value dengan kode token masing-masing email -->
-    <option value="KODE_ACCESS_KEY_EMAIL_PERTAMA">Kirim ke Admin (Email 1)</option>
-    <option value="KODE_ACCESS_KEY_EMAIL_KEDUA">Kirim ke Manajer (Email 2)</option>
-</select>
-
-<!-- Input untuk mencatat siapa nama pengirimnya -->
-<label>Nama Pengirim:</label>
-<input type="text" name="name" placeholder="Nama Anda" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
-
-<!-- Input Lampiran File -->
-<label>Pilih File:</label>
-<input type="file" name="attachment" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kirim File Langsung ke Email</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 50px; }
-        .box { max-width: 400px; background: white; padding: 30px; margin: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #333; margin-bottom: 20px; }
-        label { font-weight: bold; color: #555; }
-        input[type="email"], input[type="file"] { width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; font-weight: bold; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
+        .box { max-width: 400px; background: white; padding: 25px; margin: 30px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; font-size: 22px; }
+        label { font-weight: bold; color: #555; display: block; margin-top: 15px; }
+        input[type="text"], input[type="email"], select, input[type="file"] { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 14px; }
+        button { width: 100%; padding: 14px; background: #28a745; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 15px; }
         button:hover { background: #218838; }
     </style>
 </head>
@@ -33,38 +18,34 @@
 
 <div class="box">
     <h2>Form Kirim File</h2>
-    <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-    <!-- Membuat menu dropdown pilihan tujuan email -->
-<label>Pilih Tujuan Pengiriman Email:</label>
-<select name="access_key" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
-    <option value="">-- Pilih Tujuan --</option>
-    <!-- Ganti value dengan kode token masing-masing email -->
-    <option value="KODE_ACCESS_KEY_EMAIL_PERTAMA">Kirim ke Admin (Email 1)</option>
-    <option value="KODE_ACCESS_KEY_EMAIL_KEDUA">Kirim ke Manajer (Email 2)</option>
-</select>
+    
+    <form action="https://web3forms.com" method="POST" enctype="multipart/form-data">
+        
+        <!-- MENU PILIHAN TUJUAN EMAIL -->
+        <label>Pilih Tujuan Pengiriman Email:</label>
+        <select name="access_key" required>
+            <option value="">-- Pilih Tujuan --</option>
+            <!-- MASUKKAN TOKEN EMAIL 1 DI BAWAH INI -->
+            <option value="b5f35c7f-28d7-4...">Kirim ke Admin (Email 1)</option>
+            <!-- MASUKKAN TOKEN EMAIL 2 DI BAWAH INI (Jika Ada) -->
+            <option value="KODE_ACCESS_KEY_KEDUA_KAMU">Kirim ke Manajer (Email 2)</option>
+        </select>
 
-<!-- Input untuk mencatat siapa nama pengirimnya -->
-<label>Nama Pengirim:</label>
-<input type="text" name="name" placeholder="Nama Anda" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
+        <!-- INPUT NAMA PENGIRIM -->
+        <label>Nama Pengirim:</label>
+        <input type="text" name="name" placeholder="Nama Anda" required>
 
-<!-- Input Lampiran File -->
-<label>Pilih File:</label>
-<input type="file" name="attachment" required style="width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px;">
+        <!-- INPUT EMAIL PENGIRIM (REPLY-TO) -->
+        <label>Email Anda (Pengirim):</label>
+        <input type="email" name="email" placeholder="nama_kamu@email.com" required>
 
-    <!-- Paste Kode Access Key Anda di bawah ini -->
-    <input type="hidden" name="access_key" value="b5f35c7f-28d7-40b3-ba17-f6ca2d449a39">
+        <!-- INPUT LAMPIRAN FILE (Wajib name="attachment") -->
+        <label>Pilih File:</label>
+        <input type="file" name="attachment" required>
 
-    <!-- Input Email Pengunjung (Wajib menggunakan name="email") -->
-    <label>Email Anda (Pengirim):</label>
-    <input type="email" name="email" placeholder="nama_kamu@email.com" required>
-
-    <!-- Input Lampiran File (Wajib menggunakan name="attachment") -->
-    <label>Pilih File:</label>
-    <input type="file" name="attachment" required>
-
-    <button type="submit" name="submit">Kirim ke Email</button>
-</form>
-
+        <!-- TOMBOL KIRIM -->
+        <button type="submit">Kirim ke Email</button>
+    </form>
 </div>
 
 </body>
